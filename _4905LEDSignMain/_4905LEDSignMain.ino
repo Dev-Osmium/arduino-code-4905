@@ -12,12 +12,26 @@ int a = 0;
 //   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(20, 6, NEO_GRB + NEO_KHZ800);
 
+
 void setup() {
+  pinMode(10, INPUT);
   strip.begin();
   strip.show();
 }
 
 void loop() {
+  checkButton();
   
 }
 
+void checkButton() {
+  buttonState = digitalRead(modeSwitchPin);
+
+  if (buttonState == HIGH) {
+    if (mode <=6) {
+      mode ++;
+    } else {
+      mode = 1;
+    }
+  }
+}
